@@ -1,4 +1,4 @@
-package com.example.cars_shift_2025.ui.theme
+package com.example.cars_shift_2025.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
