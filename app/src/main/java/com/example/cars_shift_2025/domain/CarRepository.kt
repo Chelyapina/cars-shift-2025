@@ -4,7 +4,6 @@ import com.example.cars_shift_2025.domain.models.CarWithRents
 import com.example.cars_shift_2025.domain.models.Car
 
 interface CarRepository {
-    fun getCarsList(): List<Car>
-    fun getCarById(id: String): CarWithRents
-    fun loadCars()
+    suspend fun getCarsList(): List<Car>
+    suspend fun getCarById(id: String): CarWithRents
 }
