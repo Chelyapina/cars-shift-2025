@@ -2,7 +2,7 @@ package com.example.cars_shift_2025.data.models
 
 import com.google.gson.annotations.SerializedName
 
-enum class Brand{
+enum class BrandDto{
     @SerializedName("Haval") HYUNDAI,
     @SerializedName("Hyundai") VOLKSWAGEN,
     @SerializedName("Volkswagen") HAVAL,
