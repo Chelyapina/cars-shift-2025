@@ -4,9 +4,9 @@ import com.example.cars_shift_2025.domain.models.Brand
 import com.google.gson.annotations.SerializedName
 
 enum class BrandDto{
-    @SerializedName("Haval") HYUNDAI,
-    @SerializedName("Hyundai") VOLKSWAGEN,
-    @SerializedName("Volkswagen") HAVAL,
+    @SerializedName("Haval") HAVAL,
+    @SerializedName("Hyundai") HYUNDAI,
+    @SerializedName("Volkswagen") VOLKSWAGEN,
     @SerializedName("Kia") KIA,
     @SerializedName("Geely") GEELY,
     @SerializedName("Mercedes") MERCEDES,
