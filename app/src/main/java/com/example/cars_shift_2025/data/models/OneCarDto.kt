@@ -3,7 +3,7 @@ package com.example.cars_shift_2025.data.models
 import com.google.gson.annotations.SerializedName
 
 
-data class DataDto (
+data class OneCarDto (
 
   @SerializedName("id"           ) var id           : String,
   @SerializedName("name"         ) var name         : String,
