@@ -7,6 +7,6 @@ data class ListCarDto (
 
   @SerializedName("success" ) var success : Boolean?        = null ,
   @SerializedName("data"    ) var data    : ArrayList<OneCarDto> = arrayListOf() ,
-  @SerializedName("meta"    ) var meta    : MetaDto?           = MetaDto()
+  @SerializedName("meta"    ) var meta    : MetaDto           = MetaDto()
 
 )
