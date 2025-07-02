@@ -1,11 +1,13 @@
 package com.example.cars_shift_2025.data.models
 
-enum class Color(val value : String) {
-    BLACK("black"),
-    WHITE("white"),
-    RED("red"),
-    SILVER("silver"),
-    BLUE("blue"),
-    GREY("grey"),
-    ORANGE("orange")
+import com.google.gson.annotations.SerializedName
+
+enum class Color {
+    @SerializedName("black") BLACK,
+    @SerializedName("white") WHITE,
+    @SerializedName("red") RED,
+    @SerializedName("silver") SILVER,
+    @SerializedName("blue") BLUE,
+    @SerializedName("grey") GREY,
+    @SerializedName("orange") ORANGE
 }

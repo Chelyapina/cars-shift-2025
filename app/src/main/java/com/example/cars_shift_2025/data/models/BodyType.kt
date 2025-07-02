@@ -1,9 +1,11 @@
 package com.example.cars_shift_2025.data.models
 
-enum class BodyType(val value : String) {
-    SEDAN("sedan"),
-    SUV("suv"),
-    COUPE("coupe"),
-    HATCHBACK("hatchback"),
-    CABRIOLET("cabriolet")
+import com.google.gson.annotations.SerializedName
+
+enum class BodyType {
+    @SerializedName("sedan") SEDAN,
+    @SerializedName("suv") SUV,
+    @SerializedName("coupe") COUPE,
+    @SerializedName("hatchback") HATCHBACK,
+    @SerializedName("cabriolet") CABRIOLET
 }

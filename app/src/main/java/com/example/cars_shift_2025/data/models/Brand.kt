@@ -1,14 +1,16 @@
 package com.example.cars_shift_2025.data.models
 
-enum class Brand(val value: String){
-    HAVAL("Haval"),
-    HYUNDAI("Hyundai"),
-    VOLKSWAGEN("Volkswagen"),
-    KIA("Kia"),
-    GEELY("Geely"),
-    MERCEDES("Mercedes"),
-    GARDEN_CAR("Garden car"),
-    GROCERY_CAR("Grocery cart"),
-    HAIER("Haier"),
-    INVALID("Invalid")
+import com.google.gson.annotations.SerializedName
+
+enum class Brand{
+    @SerializedName("Haval") HYUNDAI,
+    @SerializedName("Hyundai") VOLKSWAGEN,
+    @SerializedName("Volkswagen") HAVAL,
+    @SerializedName("Kia") KIA,
+    @SerializedName("Geely") GEELY,
+    @SerializedName("Mercedes") MERCEDES,
+    @SerializedName("Garden car") GARDEN_CAR,
+    @SerializedName("Grocery cart") GROCERY_CAR,
+    @SerializedName("Haier") HAIER,
+    @SerializedName("Invalid") INVALID
 }

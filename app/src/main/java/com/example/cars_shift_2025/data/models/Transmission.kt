@@ -1,6 +1,8 @@
 package com.example.cars_shift_2025.data.models
 
-enum class Transmission(val value : String) {
-    AUTOMATIC("automatic"),
-    MANUAL("manual")
+import com.google.gson.annotations.SerializedName
+
+enum class Transmission {
+    @SerializedName("automatic") AUTOMATIC,
+    @SerializedName("manual") MANUAL
 }
