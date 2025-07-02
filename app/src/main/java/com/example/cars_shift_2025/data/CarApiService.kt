@@ -9,7 +9,7 @@ interface CarApiService {
     @GET("/api/cars/info")
     suspend fun getCarsList() : ListCarDto
 
-    @GET("/api/cars/{carId}")
+    @GET("/api/cars/info/{carId}")
     suspend fun getCarById(
         @Path(QUERY_PARAM_CAR_ID) id: String
     ) : OneCarDto
