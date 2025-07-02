@@ -10,5 +10,6 @@ enum class Brand{
     GARDEN_CAR,
     GROCERY_CAR,
     HAIER,
-    INVALID
+    INVALID,
+    UNKNOWN;
 }

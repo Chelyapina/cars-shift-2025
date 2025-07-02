@@ -1,10 +1,10 @@
 package com.example.cars_shift_2025.domain
 
-import com.example.cars_shift_2025.domain.models.CarDetails
-import com.example.cars_shift_2025.domain.models.CarListItem
+import com.example.cars_shift_2025.domain.models.CarWithRents
+import com.example.cars_shift_2025.domain.models.Car
 
 interface CarRepository {
-    fun getCarsList(): List<CarListItem>
-    fun getCarById(id: String): CarDetails
+    fun getCarsList(): List<Car>
+    fun getCarById(id: String): CarWithRents
     fun loadCars()
 }

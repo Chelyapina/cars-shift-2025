@@ -5,5 +5,6 @@ enum class BodyType {
     SUV,
     COUPE,
     HATCHBACK,
-    CABRIOLET
+    CABRIOLET,
+    UNKNOWN;
 }

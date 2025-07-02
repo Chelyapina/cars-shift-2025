@@ -1,10 +1,10 @@
 package com.example.cars_shift_2025.domain.models
 
-data class CarListItem(
+data class Car(
     val id: String,
     val name: String,
-    val brand: String,
+    val brand: Brand,
     val imageUrl: String,
-    val transmission: String,
-    val price: Int
+    val transmission: Transmission,
+    val price: Long
 )

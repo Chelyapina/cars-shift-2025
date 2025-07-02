@@ -7,5 +7,6 @@ enum class Color {
     SILVER,
     BLUE,
     GREY,
-    ORANGE
+    ORANGE,
+    UNKNOWN;
 }
