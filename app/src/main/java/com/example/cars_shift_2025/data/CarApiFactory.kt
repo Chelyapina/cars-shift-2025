@@ -8,13 +8,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 object CarApiFactory {
     private const val BASE_URL = "https://shift-intensive.ru/"
 
-    private val okHttpClient: OkHttpClient by lazy {
+    private val okHttpClient : OkHttpClient by lazy {
         OkHttpClient.Builder()
             .addInterceptor(createLoggingInterceptor())
             .build()
     }
 
-    private fun createLoggingInterceptor(): HttpLoggingInterceptor {
+    private fun createLoggingInterceptor() : HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
@@ -26,7 +26,7 @@ object CarApiFactory {
         .client(okHttpClient)
         .build()
 
-    val apiService: CarApiService by lazy {
+    val apiService : CarApiService by lazy {
         retrofit.create(CarApiService::class.java)
     }
 }

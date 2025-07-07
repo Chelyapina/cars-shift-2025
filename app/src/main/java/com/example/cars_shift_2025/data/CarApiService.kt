@@ -2,7 +2,6 @@ package com.example.cars_shift_2025.data
 
 import com.example.cars_shift_2025.data.models.ListCarDto
 import com.example.cars_shift_2025.data.models.ListCarWithRentsDto
-import com.example.cars_shift_2025.data.models.OneCarDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
