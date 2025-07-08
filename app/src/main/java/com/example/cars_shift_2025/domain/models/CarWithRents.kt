@@ -10,6 +10,6 @@ data class CarWithRents(
     val color: Color,
     val bodyType: BodyType,
     val steering: Steering,
-    val startDate: Long,
-    val endDate: Long
+    val startDate: Long?,
+    val endDate: Long?
 )
