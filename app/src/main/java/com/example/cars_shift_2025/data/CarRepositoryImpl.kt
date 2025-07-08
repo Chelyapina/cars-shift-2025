@@ -1,35 +1,42 @@
 package com.example.cars_shift_2025.data
 
-import android.util.Log
-import com.example.cars_shift_2025.data.mappers.CarMapper
+import com.example.cars_shift_2025.data.mappers.toCarWithRents
+import com.example.cars_shift_2025.data.mappers.toListCar
 import com.example.cars_shift_2025.domain.CarRepository
 import com.example.cars_shift_2025.domain.models.Car
 import com.example.cars_shift_2025.domain.models.CarWithRents
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import java.io.IOException
 
 class CarRepositoryImpl(
-    private val carApiService: CarApiService,
-    private val carMapper: CarMapper
+    private val carApiService : CarApiService ,
 ) : CarRepository {
+    override suspend fun getCarsList(): Result<List<Car>> = try {
+        val response = carApiService.getCarsList()
 
-    override suspend fun getCarsList(): List<Car> = withContext(Dispatchers.IO) {
-        try {
-            val carDtoList = carApiService.getCarsList()
-            carMapper.toListCar(carDtoList.data)
-        } catch (e: Exception) {
-            Log.e("Error fetching car list:", e.toString())
-            emptyList()
+        if (!response.success) {
+            Result.failure(Exception("Ошибка сервера"))
+        } else {
+            val cars = response.toListCar()
+            Result.success(cars)
         }
+    } catch (_: IOException) {
+        Result.failure(Exception("Ошибка сети"))
+    } catch (_: Exception) {
+        Result.failure(Exception("Неизвестная ошибка"))
     }
 
-    override suspend fun getCarById(id: String): CarWithRents = withContext(Dispatchers.IO) {
-        try {
-            val carDto = carApiService.getCarById(id)
-            carMapper.toCarWithRents(carDto.data)
-        } catch (e: Exception) {
-            Log.e("Error fetching car with id $id:", e.message.toString())
-            throw e
+    override suspend fun getCarById(id : String) : Result<CarWithRents>  = try {
+        val response = carApiService.getCarById(id)
+
+        if (!response.success) {
+            Result.failure(Exception("Ошибка сервера"))
+        } else {
+            val car = response.data.toCarWithRents()
+            Result.success(car)
         }
+    } catch (_: IOException) {
+        Result.failure(Exception("Ошибка сети"))
+    } catch (_: Exception) {
+        Result.failure(Exception("Неизвестная ошибка"))
     }
 }

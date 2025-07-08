@@ -1,13 +1,8 @@
 package com.example.cars_shift_2025.data.models
 
-import com.google.gson.annotations.SerializedName
-
-
-data class MetaDto (
-
-  @SerializedName("total"      ) var total      : Int? = null,
-  @SerializedName("page"       ) var page       : Int? = null,
-  @SerializedName("limit"      ) var limit      : Int? = null,
-  @SerializedName("totalPages" ) var totalPages : Int? = null
-
+data class MetaDto(
+    val total : Int? = null ,
+    val page : Int? = null ,
+    val limit : Int? = null ,
+    val totalPages : Int? = null
 )

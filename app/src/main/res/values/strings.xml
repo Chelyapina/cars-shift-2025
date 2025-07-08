@@ -1,3 +1,68 @@
 <resources>
     <string name="app_name">cars-shift-2025</string>
+    <string name="name">Автомобили</string>
+
+    <!-- Button -->
+    <string name="button_back">Назад</string>
+    <string name="button_save">Забронировать</string>
+    <string name="button_retry">Повторить</string>
+
+    <!-- Content description -->
+    <string name="content_description_back">Назад</string>
+    <string name="content_description_car_image">Изображение автомобиля</string>
+    <string name="content_description_tune">Фильтры</string>
+
+    <string name="tune">Фильтры</string>
+    <string name="search">Поиск</string>
+    <string name="empty_state">Результаты не найдены</string>
+
+    <!-- BodyType -->
+    <string name="body_type_sedan">Седан</string>
+    <string name="body_type_suv">Внедорожник</string>
+    <string name="body_type_coupe">Купе</string>
+    <string name="body_type_hatchback">Хэтчбек</string>
+    <string name="body_type_cabriolet">Кабриолет</string>
+
+    <!-- Brand -->
+    <string name="brand_hyundai">Hyundai</string>
+    <string name="brand_volkswagen">Volkswagen</string>
+    <string name="brand_haval">Haval</string>
+    <string name="brand_kia">Kia</string>
+    <string name="brand_geely">Geely</string>
+    <string name="brand_mercedes">Mercedes</string>
+    <string name="brand_garden_car">Garden car</string>
+    <string name="brand_grocery_cart">Grocery cart</string>
+    <string name="brand_haier">Haier</string>
+    <string name="brand_invalid">Invalid</string>
+
+    <!-- Color -->
+    <string name="color_black">Черный</string>
+    <string name="color_white">Белый</string>
+    <string name="color_red">Красный</string>
+    <string name="color_silver">Серебряный</string>
+    <string name="color_blue">Синий</string>
+    <string name="color_grey">Серый</string>
+    <string name="color_orange">Оранжевый</string>
+
+    <!-- Steering -->
+    <string name="steering_left">Слева</string>
+    <string name="steering_right">Справа</string>
+    <string name="steering_no_steering">Руль отсутствует</string>
+
+    <!-- Transmission -->
+    <string name="transmission_automatic">Автомат</string>
+    <string name="transmission_manual">Механика</string>
+
+    <string name="characteristics_title">Характеристики</string>
+    <!-- Characteristics titles -->
+    <string name="body_type">Тип кузова</string>
+    <string name="color">Цвет</string>
+    <string name="steering">Сторона руля</string>
+    <string name="transmission">Коробка передач</string>
+    <string name="price">Цена</string>
+
+    <!-- Errors -->
+    <string name="error_message">Неизвестная ошибка</string>
+    <string name="error_date">Не указана</string>
+
 </resources>
