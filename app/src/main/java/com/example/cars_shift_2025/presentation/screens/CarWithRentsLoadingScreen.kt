@@ -24,7 +24,7 @@ fun CarWithRentsLoadingScreen(
 
         is CarWithRentsState.Error -> ErrorScreen(
             message = currentState.message ,
-            onRetry = currentState.retryAction
+            onRetry = { viewModel.retryLoad() }
         )
     }
 }

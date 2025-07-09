@@ -30,26 +30,25 @@ class CarWithRentsViewModel @AssistedInject constructor(
         loadCarWithRents()
     }
 
-    fun loadCarWithRents() {
+    fun retryLoad() {
+        loadCarWithRents()
+    }
+
+    private fun loadCarWithRents() {
         viewModelScope.launch {
             _state.value = CarWithRentsState.Loading
             val result = getCarByIdUseCase(carId)
 
-            if (result.isSuccess) {
-                val carWithRents = result.getOrNull()?.toUi(uiFormatters)
-                _state.value = if (carWithRents != null) {
-                    CarWithRentsState.Success(carWithRents)
-                } else {
-                    CarWithRentsState.Error(
-                        message = uiFormatters.getNotFoundMessage() ,
-                        retryAction = ::loadCarWithRents
-                    )
+            _state.value = when {
+                result.isSuccess && result.getOrNull() != null -> {
+                    CarWithRentsState.Success(result.getOrNull()!!.toUi(uiFormatters))
                 }
-            } else {
-                _state.value = CarWithRentsState.Error(
-                    message = uiFormatters.formatError(result.exceptionOrNull()) ,
-                    retryAction = ::loadCarWithRents
-                )
+                result.isSuccess -> {
+                    CarWithRentsState.Error(uiFormatters.getNotFoundMessage())
+                }
+                else -> {
+                    CarWithRentsState.Error(uiFormatters.formatError(result.exceptionOrNull()))
+                }
             }
         }
     }

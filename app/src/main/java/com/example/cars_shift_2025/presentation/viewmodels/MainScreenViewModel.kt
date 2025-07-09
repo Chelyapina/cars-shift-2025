@@ -26,7 +26,11 @@ class MainScreenViewModel @Inject constructor(
         loadCars()
     }
 
-    fun loadCars() {
+    fun retryLoad() {
+        loadCars()
+    }
+
+    private fun loadCars() {
         viewModelScope.launch {
             _state.value = Loading
             val result = getCarsListUseCase()
@@ -39,10 +43,14 @@ class MainScreenViewModel @Inject constructor(
                     Success(cars.map { it.toUi(uiFormatters) })
                 }
             } else {
-                _state.value = Error(
-                    message = uiFormatters.formatError(result.exceptionOrNull()),
-                    retryAction = ::loadCars
-                )
+                _state.value = when {
+                    result.isSuccess && !result.getOrNull().isNullOrEmpty() -> {
+                        Success(result.getOrNull()!!.map { it.toUi(uiFormatters) })
+                    }
+
+                    result.isSuccess -> Empty
+                    else -> Error(uiFormatters.formatError(result.exceptionOrNull()))
+                }
             }
         }
     }
