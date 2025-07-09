@@ -64,5 +64,8 @@
     <!-- Errors -->
     <string name="error_message">Неизвестная ошибка</string>
     <string name="error_date">Не указана</string>
-
+    <string name="error_network">Проблемы с интернетом</string>
+    <string name="error_server">Ошибка сервера</string>
+    <string name="error_unknown">Неизвестная ошибка</string>
+    <string name="error_data_not_found">Данные не найдены</string>
 </resources>

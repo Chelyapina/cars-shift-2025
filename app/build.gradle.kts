@@ -1,9 +1,8 @@
-import org.jetbrains.kotlin.fir.declarations.builder.buildScript
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id ("kotlin-kapt")
 }
 
 android {
@@ -74,4 +73,12 @@ dependencies {
     implementation ("com.github.bumptech.glide:compose:1.0.0-beta01")
     // Compose navigation
     implementation ("androidx.navigation:navigation-compose:2.9.1")
+    // Dagger 2
+    implementation ("com.google.dagger:dagger:2.48")
+    kapt ("com.google.dagger:dagger-compiler:2.48")
+    // Activity
+    implementation ("androidx.activity:activity-compose:1.8.0")
+    // AssistedInject
+    implementation ("com.google.dagger:dagger-android-support:2.48")
+    kapt ("com.google.dagger:dagger-android-processor:2.48")
 }

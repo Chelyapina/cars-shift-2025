@@ -29,7 +29,6 @@ import com.example.cars_shift_2025.presentation.Dimens.IMAGE_CAR_HEIGHT_LARGE
 import com.example.cars_shift_2025.presentation.Dimens.IMAGE_CAR_WIDTH_LARGE
 import com.example.cars_shift_2025.presentation.Dimens.PADDING_LARGE
 import com.example.cars_shift_2025.presentation.Dimens.PADDING_SMALL
-import com.example.cars_shift_2025.presentation.mappers.formatDate
 import com.example.cars_shift_2025.presentation.models.CarWithRentsUi
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -137,10 +136,10 @@ private fun SectionTitle(text : String) {
 
 @Composable
 fun CarPriceSection(car : CarWithRentsUi) {
-    CharacteristicItem("Цена" , value = car.price)
+    CharacteristicItem(stringResource(R.string.price), value = car.price)
     Column {
         SectionTitle(
-            text = "Даты аренды ${formatDate(car.startDate)} - ${formatDate(car.endDate)}"
+            text = "Даты аренды ${car.startDate} - ${car.endDate}"
         )
     }
 }

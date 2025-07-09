@@ -5,8 +5,8 @@ import com.example.cars_shift_2025.domain.models.CarWithRents
 import com.example.cars_shift_2025.presentation.models.CarUi
 import com.example.cars_shift_2025.presentation.models.CarWithRentsUi
 
-fun Car.toUi() : CarUi {
-    return CarUi(
+fun Car.toUi(mappers : UiFormatters) : CarUi = with(mappers) {
+    CarUi(
         id = id ,
         imageRes = imageUrl ,
         title = "${brand.toUi}\n${name}" ,
@@ -15,8 +15,8 @@ fun Car.toUi() : CarUi {
     )
 }
 
-fun CarWithRents.toUi() : CarWithRentsUi {
-    return CarWithRentsUi(
+fun CarWithRents.toUi(mappers : UiFormatters) : CarWithRentsUi = with(mappers) {
+    CarWithRentsUi(
         imageRes = imageUrl ,
         title = "${brand.toUi}\n${name}" ,
         transmission = transmission.toUi ,
@@ -24,8 +24,8 @@ fun CarWithRents.toUi() : CarWithRentsUi {
         bodyType = bodyType.toUi ,
         color = color.toUi ,
         price = "$price ₽" ,
-        startDate = startDate ,
-        endDate = endDate
+        startDate = formatDate(startDate) ,
+        endDate = formatDate(endDate)
     )
 }
 
