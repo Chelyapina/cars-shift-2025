@@ -11,7 +11,8 @@ import javax.inject.Inject
 
 class UiFormatters @Inject constructor(
     private val stringProvider : StringProvider ,
-    private val dateFormatter : DateFormatter
+    private val dateFormatter : DateFormatter ,
+    private val errorFormatter : ErrorFormatter
 ) {
     val BodyType.toUi : String
         get() = when (this) {
@@ -61,4 +62,6 @@ class UiFormatters @Inject constructor(
         }
 
     fun formatDate(timestamp : Long?) : String = dateFormatter.formatDate(timestamp)
+    fun formatError(throwable : Throwable?) : String = errorFormatter.formatError(throwable)
+    fun getNotFoundMessage(): String = errorFormatter.getNotFoundMessage()
 }

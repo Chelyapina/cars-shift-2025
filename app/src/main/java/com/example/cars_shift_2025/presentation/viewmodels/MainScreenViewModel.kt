@@ -39,13 +39,8 @@ class MainScreenViewModel @Inject constructor(
                     Success(cars.map { it.toUi(uiFormatters) })
                 }
             } else {
-                val errorMessage = when (result.exceptionOrNull()?.message) {
-                    "Ошибка сети" -> "Проблемы с интернетом"
-                    "Ошибка сервера" -> "Ошибка сервера"
-                    else -> "Неизвестная ошибка"
-                }
                 _state.value = Error(
-                    message = errorMessage ,
+                    message = uiFormatters.formatError(result.exceptionOrNull()),
                     retryAction = ::loadCars
                 )
             }

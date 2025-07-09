@@ -41,18 +41,13 @@ class CarWithRentsViewModel @AssistedInject constructor(
                     CarWithRentsState.Success(carWithRents)
                 } else {
                     CarWithRentsState.Error(
-                        message = "Данные не найдены" ,
+                        message = uiFormatters.getNotFoundMessage() ,
                         retryAction = ::loadCarWithRents
                     )
                 }
             } else {
-                val errorMessage = when (result.exceptionOrNull()?.message) {
-                    "Ошибка сети" -> "Проблемы с интернетом"
-                    "Ошибка сервера" -> "Ошибка сервера"
-                    else -> "Неизвестная ошибка"
-                }
                 _state.value = CarWithRentsState.Error(
-                    message = errorMessage ,
+                    message = uiFormatters.formatError(result.exceptionOrNull()) ,
                     retryAction = ::loadCarWithRents
                 )
             }

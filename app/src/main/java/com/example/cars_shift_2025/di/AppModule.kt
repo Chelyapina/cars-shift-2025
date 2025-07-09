@@ -3,6 +3,7 @@ package com.example.cars_shift_2025.di
 import android.app.Application
 import android.content.Context
 import com.example.cars_shift_2025.presentation.mappers.DateFormatter
+import com.example.cars_shift_2025.presentation.mappers.ErrorFormatter
 import com.example.cars_shift_2025.presentation.mappers.UiFormatters
 import dagger.Module
 import dagger.Provides
@@ -32,8 +33,9 @@ class AppModule {
     @Singleton
     fun provideUiFormatters(
         stringProvider : StringProvider ,
-        dateFormatter : DateFormatter
+        dateFormatter : DateFormatter ,
+        errorFormatter : ErrorFormatter
     ) : UiFormatters {
-        return UiFormatters(stringProvider , dateFormatter)
+        return UiFormatters(stringProvider , dateFormatter , errorFormatter)
     }
 }
