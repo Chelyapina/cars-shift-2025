@@ -11,11 +11,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainScreenViewModel : ViewModel() {
-    private val repository = CarRepositoryImpl(CarApiFactory.apiService)
-    private val getCarsListUseCase = GetCarsListUseCase(repository)
-
+class MainScreenViewModel @Inject constructor(
+    private val getCarsListUseCase: GetCarsListUseCase
+) : ViewModel() {
     private val _state = MutableStateFlow<CarListState>(Loading)
     val stateFlow: StateFlow<CarListState> = _state.asStateFlow()
 

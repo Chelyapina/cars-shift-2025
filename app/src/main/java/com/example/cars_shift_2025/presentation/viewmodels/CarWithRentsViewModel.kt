@@ -2,22 +2,24 @@ package com.example.cars_shift_2025.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cars_shift_2025.data.CarApiFactory
-import com.example.cars_shift_2025.data.CarRepositoryImpl
-import com.example.cars_shift_2025.domain.CarRepository
 import com.example.cars_shift_2025.domain.usecases.GetCarByIdUseCase
-import com.example.cars_shift_2025.domain.usecases.GetCarsListUseCase
 import com.example.cars_shift_2025.presentation.mappers.toUi
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class CarWithRentsViewModel(
-    private val carId: String,
-    repository: CarRepository
+class CarWithRentsViewModel @AssistedInject constructor(
+    private val getCarByIdUseCase: GetCarByIdUseCase,
+    @Assisted private val carId: String
 ) : ViewModel() {
-    private val getCarByIdUseCase = GetCarByIdUseCase(repository)
+    @AssistedFactory
+    interface Factory {
+        fun create(carId: String): CarWithRentsViewModel
+    }
 
     private val _state = MutableStateFlow<CarWithRentsState>(CarWithRentsState.Loading)
     val stateFlow: StateFlow<CarWithRentsState> = _state.asStateFlow()
