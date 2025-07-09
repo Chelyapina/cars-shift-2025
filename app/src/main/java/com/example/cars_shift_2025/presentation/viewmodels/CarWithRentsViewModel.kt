@@ -3,6 +3,7 @@ package com.example.cars_shift_2025.presentation.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cars_shift_2025.domain.usecases.GetCarByIdUseCase
+import com.example.cars_shift_2025.presentation.mappers.UiFormatters
 import com.example.cars_shift_2025.presentation.mappers.toUi
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -13,16 +14,17 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class CarWithRentsViewModel @AssistedInject constructor(
-    private val getCarByIdUseCase: GetCarByIdUseCase,
-    @Assisted private val carId: String
+    private val getCarByIdUseCase : GetCarByIdUseCase ,
+    private val uiFormatters : UiFormatters ,
+    @Assisted private val carId : String
 ) : ViewModel() {
     @AssistedFactory
     interface Factory {
-        fun create(carId: String): CarWithRentsViewModel
+        fun create(carId : String) : CarWithRentsViewModel
     }
 
     private val _state = MutableStateFlow<CarWithRentsState>(CarWithRentsState.Loading)
-    val stateFlow: StateFlow<CarWithRentsState> = _state.asStateFlow()
+    val stateFlow : StateFlow<CarWithRentsState> = _state.asStateFlow()
 
     init {
         loadCarWithRents()
@@ -34,12 +36,12 @@ class CarWithRentsViewModel @AssistedInject constructor(
             val result = getCarByIdUseCase(carId)
 
             if (result.isSuccess) {
-                val carWithRents = result.getOrNull()?.toUi()
+                val carWithRents = result.getOrNull()?.toUi(uiFormatters)
                 _state.value = if (carWithRents != null) {
                     CarWithRentsState.Success(carWithRents)
                 } else {
                     CarWithRentsState.Error(
-                        message = "Данные не найдены",
+                        message = "Данные не найдены" ,
                         retryAction = ::loadCarWithRents
                     )
                 }
@@ -50,7 +52,7 @@ class CarWithRentsViewModel @AssistedInject constructor(
                     else -> "Неизвестная ошибка"
                 }
                 _state.value = CarWithRentsState.Error(
-                    message = errorMessage,
+                    message = errorMessage ,
                     retryAction = ::loadCarWithRents
                 )
             }

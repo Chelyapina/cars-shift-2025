@@ -2,11 +2,13 @@ package com.example.cars_shift_2025.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cars_shift_2025.data.CarApiFactory
-import com.example.cars_shift_2025.data.CarRepositoryImpl
-import com.example.cars_shift_2025.presentation.mappers.toUi
 import com.example.cars_shift_2025.domain.usecases.GetCarsListUseCase
-import com.example.cars_shift_2025.presentation.viewmodels.CarListState.*
+import com.example.cars_shift_2025.presentation.mappers.UiFormatters
+import com.example.cars_shift_2025.presentation.mappers.toUi
+import com.example.cars_shift_2025.presentation.viewmodels.CarListState.Empty
+import com.example.cars_shift_2025.presentation.viewmodels.CarListState.Error
+import com.example.cars_shift_2025.presentation.viewmodels.CarListState.Loading
+import com.example.cars_shift_2025.presentation.viewmodels.CarListState.Success
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,10 +16,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainScreenViewModel @Inject constructor(
-    private val getCarsListUseCase: GetCarsListUseCase
+    private val getCarsListUseCase : GetCarsListUseCase ,
+    private val uiFormatters : UiFormatters
 ) : ViewModel() {
     private val _state = MutableStateFlow<CarListState>(Loading)
-    val stateFlow: StateFlow<CarListState> = _state.asStateFlow()
+    val stateFlow : StateFlow<CarListState> = _state.asStateFlow()
 
     init {
         loadCars()
@@ -33,7 +36,7 @@ class MainScreenViewModel @Inject constructor(
                 _state.value = if (cars.isNullOrEmpty()) {
                     Empty
                 } else {
-                    Success(cars.map { it.toUi() })
+                    Success(cars.map { it.toUi(uiFormatters) })
                 }
             } else {
                 val errorMessage = when (result.exceptionOrNull()?.message) {
@@ -42,7 +45,7 @@ class MainScreenViewModel @Inject constructor(
                     else -> "Неизвестная ошибка"
                 }
                 _state.value = Error(
-                    message = errorMessage,
+                    message = errorMessage ,
                     retryAction = ::loadCars
                 )
             }

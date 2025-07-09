@@ -14,21 +14,20 @@ import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
     @Inject
-    lateinit var viewModelFactory: DaggerViewModelFactory
+    lateinit var viewModelFactory : DaggerViewModelFactory
 
     override fun onCreate(savedInstanceState : Bundle?) {
         (application as CarShiftApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
-        ResourceProvider.initialize(this)
         enableEdgeToEdge()
         setContent {
             Carsshift2025Theme {
                 val navController = rememberNavController()
-                val viewModel: MainScreenViewModel = viewModel(factory = viewModelFactory)
+                val viewModel : MainScreenViewModel = viewModel(factory = viewModelFactory)
 
                 AppNavGraph(
-                    navHostController = navController,
-                    viewModel = viewModel,
+                    navHostController = navController ,
+                    viewModel = viewModel ,
                     viewModelFactory = viewModelFactory
                 )
             }
