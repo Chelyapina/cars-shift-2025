@@ -11,4 +11,5 @@ object Dimens {
     val IMAGE_CAR_HEIGHT = 100.dp
     val IMAGE_CAR_WIDTH_LARGE = 500.dp
     val IMAGE_CAR_HEIGHT_LARGE = 300.dp
+    const val IMAGE_ROUNDED_CORNER_SHAPE = 16
 }
