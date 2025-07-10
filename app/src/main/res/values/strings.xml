@@ -60,6 +60,7 @@
     <string name="steering">Сторона руля</string>
     <string name="transmission">Коробка передач</string>
     <string name="price">Цена</string>
+    <string name="rent">Аренда:</string>
 
     <!-- Errors -->
     <string name="error_message">Неизвестная ошибка</string>

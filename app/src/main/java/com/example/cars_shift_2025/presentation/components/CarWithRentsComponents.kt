@@ -1,9 +1,11 @@
 package com.example.cars_shift_2025.presentation.components
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -12,8 +14,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,25 +28,29 @@ import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.cars_shift_2025.R
 import com.example.cars_shift_2025.presentation.Dimens.IMAGE_CAR_HEIGHT_LARGE
 import com.example.cars_shift_2025.presentation.Dimens.IMAGE_CAR_WIDTH_LARGE
+import com.example.cars_shift_2025.presentation.Dimens.IMAGE_ROUNDED_CORNER_SHAPE
 import com.example.cars_shift_2025.presentation.Dimens.PADDING_LARGE
 import com.example.cars_shift_2025.presentation.Dimens.PADDING_SMALL
 import com.example.cars_shift_2025.presentation.models.CarWithRentsUi
+import com.example.cars_shift_2025.presentation.theme.Colors
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CarWithRentsTopBar(
-    title : String ,
     onBackClick : () -> Unit
 ) {
     TopAppBar(
         title = {
-            Text(
-                text = title
-            )
+            Text(stringResource(R.string.name))
         } ,
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = Color.Transparent ,
+            scrolledContainerColor = Color.Transparent
+        ) ,
         navigationIcon = {
             IconButton(onClick = onBackClick) {
                 Icon(
@@ -100,17 +108,18 @@ fun CarImageSection(
                     .placeholder(R.drawable.ic_car)
                     .error(R.drawable.ic_car)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .transform(RoundedCorners(IMAGE_ROUNDED_CORNER_SHAPE))
             }
         )
     }
-
 }
 
 @Composable
 fun CarTitleSection(title : String) {
     Text(
         text = title ,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth() ,
+        style = MaterialTheme.typography.headlineMedium
     )
 }
 
@@ -118,11 +127,11 @@ fun CarTitleSection(title : String) {
 fun CarCharacteristicsSection(car : CarWithRentsUi) {
     Column {
         SectionTitle(text = stringResource(R.string.characteristics_title))
-
         CharacteristicItem(label = stringResource(R.string.transmission) , value = car.transmission)
         CharacteristicItem(label = stringResource(R.string.steering) , value = car.steering)
         CharacteristicItem(label = stringResource(R.string.body_type) , value = car.bodyType)
         CharacteristicItem(label = stringResource(R.string.color) , value = car.color)
+        CharacteristicItem(label = stringResource(R.string.price) , value = car.price)
     }
 }
 
@@ -130,16 +139,17 @@ fun CarCharacteristicsSection(car : CarWithRentsUi) {
 private fun SectionTitle(text : String) {
     Text(
         text = text ,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth() ,
+        style = MaterialTheme.typography.bodyLarge
     )
+    Spacer(modifier = Modifier.size(PADDING_LARGE))
 }
 
 @Composable
 fun CarPriceSection(car : CarWithRentsUi) {
-    CharacteristicItem(stringResource(R.string.price), value = car.price)
     Column {
         SectionTitle(
-            text = "Даты аренды ${car.startDate} - ${car.endDate}"
+            text = stringResource(R.string.rent) + " ${car.startDate} - ${car.endDate}"
         )
     }
 }
@@ -167,12 +177,8 @@ fun CharacteristicItem(
             modifier = Modifier.fillMaxWidth() ,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(
-                text = label
-            )
-            Text(
-                text = value
-            )
+            label.CharacteristicItemLabel(isSystemInDarkTheme())
+            Text(text = value)
         }
         HorizontalDivider(
             modifier = Modifier.padding(vertical = PADDING_SMALL) ,
@@ -180,4 +186,19 @@ fun CharacteristicItem(
             color = Color.Gray
         )
     }
+}
+
+@Composable
+fun String.CharacteristicItemLabel(
+    isDarkTheme : Boolean
+) {
+    if (isDarkTheme) Text(
+        text = this ,
+        style = MaterialTheme.typography.bodyMedium ,
+        color = Colors.DarkTextSecondary
+    ) else Text(
+        text = this ,
+        style = MaterialTheme.typography.bodyMedium ,
+        color = Colors.LightTextSecondary
+    )
 }

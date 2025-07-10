@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,7 +40,10 @@ fun CarListScreen(
                     .fillMaxWidth() ,
                 verticalArrangement = Arrangement.Center ,
                 content = {
-                    Text(text = stringResource(R.string.name))
+                    Text(
+                        text = stringResource(R.string.name) ,
+                        style = MaterialTheme.typography.headlineLarge
+                    )
                     Spacer(modifier = Modifier.size(Dimens.PADDING_SMALL))
 
                     SearchBar(
