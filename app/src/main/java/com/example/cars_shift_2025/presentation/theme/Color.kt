@@ -2,10 +2,23 @@ package com.example.cars_shift_2025.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+object Colors {
+    // Brand colors
+    val Brand = Color(0xFFDB0019)
+    val PressedPrimary = Color(0xFFC10016)
+    val HoverPrimary = Color(0xFFAD0014)
+    val BrandExtraLight = Color(0xFFFF9696)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+    // Text colors
+    val TextDisabled = Color(0xFFFF9BA6)
+    val LightTextPrimary = Color(0xFF141C24)
+    val LightTextSecondary = Color(0xFF637083)
+    val DarkTextPrimary = Color(0xFFFFFFFF)
+    val DarkTextSecondary = Color(0xFFCED2DA)
+
+    // Special button
+    val SpecialButton = Color(0xFF344051)
+    val SpecialButtonDark = Color(0xFFEFF0F1)
+    val SpecialButtonText = Color(0xFFFFFFFF)
+    val SpecialButtonTextDark = Color(0xFF141C24)
+}

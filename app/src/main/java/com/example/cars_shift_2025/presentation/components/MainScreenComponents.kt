@@ -1,5 +1,6 @@
 package com.example.cars_shift_2025.presentation.components
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.cars_shift_2025.R
+import com.example.cars_shift_2025.presentation.theme.Colors
 
 @Composable
 fun SearchBar(
@@ -35,10 +37,22 @@ fun FilterButton(
     onClick : () -> Unit ,
     modifier : Modifier = Modifier
 ) {
+    val isDarkTheme = isSystemInDarkTheme()
+    val containerColor =
+        if (isDarkTheme) Colors.SpecialButtonDark else Colors.SpecialButton
+    val contentColor =
+        if (isDarkTheme) Colors.SpecialButtonTextDark else Colors.SpecialButtonText
+
     Button(
         modifier = modifier.fillMaxWidth() ,
         onClick = onClick ,
         contentPadding = ButtonDefaults.ButtonWithIconContentPadding ,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = containerColor ,
+            disabledContainerColor = Colors.TextDisabled ,
+            contentColor = contentColor ,
+            disabledContentColor = Colors.TextDisabled
+        ) ,
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_tune) ,

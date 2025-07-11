@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +27,8 @@ import com.example.cars_shift_2025.presentation.models.CarUi
 @Composable
 fun CarListScreen(
     cars : List<CarUi> ,
-    onCarClick : (String) -> Unit
+    onCarClick : (String) -> Unit ,
+    onClickFilterButton : () -> Unit
 ) {
     var searchText by remember { mutableStateOf("") }
 
@@ -39,7 +41,10 @@ fun CarListScreen(
                     .fillMaxWidth() ,
                 verticalArrangement = Arrangement.Center ,
                 content = {
-                    Text(text = stringResource(R.string.name))
+                    Text(
+                        text = stringResource(R.string.name) ,
+                        style = MaterialTheme.typography.headlineLarge
+                    )
                     Spacer(modifier = Modifier.size(Dimens.PADDING_SMALL))
 
                     SearchBar(
@@ -49,7 +54,9 @@ fun CarListScreen(
 
                     Spacer(modifier = Modifier.size(Dimens.PADDING_SMALL))
 
-                    FilterButton(onClick = { })
+                    FilterButton(onClick = {
+                        onClickFilterButton()
+                    })
 
                     if (cars.isEmpty()) {
                         EmptyState()

@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,10 +20,12 @@ import androidx.compose.ui.res.stringResource
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.cars_shift_2025.R
 import com.example.cars_shift_2025.presentation.Dimens
 import com.example.cars_shift_2025.presentation.Dimens.IMAGE_CAR_HEIGHT
 import com.example.cars_shift_2025.presentation.Dimens.IMAGE_CAR_WIDTH
+import com.example.cars_shift_2025.presentation.Dimens.IMAGE_ROUNDED_CORNER_SHAPE
 import com.example.cars_shift_2025.presentation.models.CarUi
 
 @Composable
@@ -33,10 +36,10 @@ fun CarList(
 ) {
     LazyColumn(modifier) {
         items(
-            items = cars,
+            items = cars ,
             key = { it.id }
         ) { car ->
-            CarItem(car, onCarClick)
+            CarItem(car , onCarClick)
         }
     }
 }
@@ -84,6 +87,7 @@ fun CarImage(
                 .placeholder(R.drawable.ic_car)
                 .error(R.drawable.ic_car)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .transform(RoundedCorners(IMAGE_ROUNDED_CORNER_SHAPE))
         }
     )
 }
@@ -92,11 +96,20 @@ fun CarImage(
 private fun CarInfo(title : String , transmission : String , price : String) {
     Column {
         Spacer(modifier = Modifier.size(Dimens.PADDING_SMALL))
-        Text(title)
+        Text(
+            text = title ,
+            style = MaterialTheme.typography.bodyLarge
+        )
         Spacer(modifier = Modifier.size(Dimens.PADDING_SMALL))
-        Text(transmission)
+        Text(
+            transmission ,
+            style = MaterialTheme.typography.bodySmall
+        )
         Spacer(modifier = Modifier.size(Dimens.PADDING_SMALL))
-        Text(price)
+        Text(
+            text = price ,
+            style = MaterialTheme.typography.bodyLarge
+        )
         Spacer(modifier = Modifier.size(Dimens.PADDING_SMALL))
     }
 }
