@@ -1,6 +1,7 @@
 package com.example.cars_shift_2025.di
 
 import androidx.lifecycle.ViewModel
+import com.example.cars_shift_2025.presentation.viewmodels.FilterViewModel
 import com.example.cars_shift_2025.presentation.viewmodels.MainScreenViewModel
 import dagger.Binds
 import dagger.Module
@@ -12,4 +13,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainScreenViewModel::class)
     abstract fun bindMainScreenViewModel(viewModel : MainScreenViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FilterViewModel::class)
+    abstract fun bindFilterViewModel(viewModel: FilterViewModel): ViewModel
 }

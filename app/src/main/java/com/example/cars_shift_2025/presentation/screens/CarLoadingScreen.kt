@@ -23,6 +23,9 @@ fun CarLoadingScreen(
             cars = cars ,
             onCarClick = { carId ->
                 navController.navigate(Screen.CarWithRents.createRoute(carId))
+            } ,
+            onClickFilterButton = {
+                navController.navigate(Screen.Filter.route)
             }
         )
     }

@@ -12,7 +12,10 @@ fun OneCarDto.toCar() : Car {
         brand = brand.toDomain() ,
         imageUrl = media.firstOrNull()?.url?.let { BASE_IMAGE_URL + it } ?: "" ,
         transmission = transmission.toDomain() ,
-        price = price
+        price = price,
+        color = color.toDomain() ,
+        bodyType = bodyType.toDomain() ,
+        steering = steering?.toDomain() ?: DEFAULT_STEERING_VALUE ,
     )
 }
 

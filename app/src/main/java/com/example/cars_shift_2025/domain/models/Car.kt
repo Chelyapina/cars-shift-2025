@@ -6,5 +6,8 @@ data class Car(
     val brand: Brand,
     val imageUrl: String,
     val transmission: Transmission,
-    val price: Long
+    val price: Long,
+    val color: Color,
+    val bodyType: BodyType,
+    val steering: Steering,
 )

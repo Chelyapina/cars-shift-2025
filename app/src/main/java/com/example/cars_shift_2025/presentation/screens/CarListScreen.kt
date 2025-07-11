@@ -27,7 +27,8 @@ import com.example.cars_shift_2025.presentation.models.CarUi
 @Composable
 fun CarListScreen(
     cars : List<CarUi> ,
-    onCarClick : (String) -> Unit
+    onCarClick : (String) -> Unit ,
+    onClickFilterButton : () -> Unit
 ) {
     var searchText by remember { mutableStateOf("") }
 
@@ -53,7 +54,9 @@ fun CarListScreen(
 
                     Spacer(modifier = Modifier.size(Dimens.PADDING_SMALL))
 
-                    FilterButton(onClick = { })
+                    FilterButton(onClick = {
+                        onClickFilterButton()
+                    })
 
                     if (cars.isEmpty()) {
                         EmptyState()
